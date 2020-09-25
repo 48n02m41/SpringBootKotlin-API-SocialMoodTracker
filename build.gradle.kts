@@ -8,10 +8,24 @@ plugins {
 
 	kotlin("jvm") version "1.3.72"
 	kotlin("plugin.spring") version "1.3.72"
+//	application
+	idea
+}
+
+//application {
+//	mainClass.set("dev48n02m41.springkotlin.SpringKotlinApplication")
+//}
+
+//tasks.getByName<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
+//	mainClassName = "dev48n02m41.springkotlin.SpringKotlinApplication"
+//}
+
+springBoot {
+	mainClassName = "dev48n02m41.springkotlin.SpringKotlinApplication"
 }
 
 group = "dev48n02m41"
-version = "0.0.1-SNAPSHOT"
+version = "1.0.0"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
@@ -20,6 +34,7 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-data-rest")
 	implementation("org.postgresql:postgresql")
@@ -41,3 +56,12 @@ tasks.withType<KotlinCompile> {
 		jvmTarget = "1.8"
 	}
 }
+
+tasks.getByName<Jar>("jar") {
+	enabled = true
+}
+
+tasks.getByName<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
+	classifier = "boot"
+}
+
