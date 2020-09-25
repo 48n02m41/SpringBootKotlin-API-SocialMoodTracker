@@ -21,9 +21,9 @@ class DiaryEntryResource (private val service: DiaryEntryService) {
     fun getOneById(@PathVariable(value = "id") idIn: Long): ResponseEntity<DiaryEntryEntity> =
             service.getById(idIn)
 
-    @DeleteMapping("/{id}")
-    fun deleteOne(@PathVariable(value = "id") idIn: Long): ResponseEntity<Void> =
-            service.deleteOne(idIn)
+//    @DeleteMapping("/{id}")
+//    fun deleteOne(@PathVariable(value = "id") idIn: Long): ResponseEntity<Void> =
+//            service.deleteOne(idIn)
 
 }
 
