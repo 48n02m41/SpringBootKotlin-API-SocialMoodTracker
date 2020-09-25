@@ -1,11 +1,14 @@
 package dev48n02m41.springkotlin
 
+import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class SpringKotlinApplication
-
-fun main(args: Array<String>) {
-	runApplication<SpringKotlinApplication>(*args)
+open class SpringKotlinApplication {
+	companion object {
+		@JvmStatic fun main(args: Array<String>) {
+			SpringApplication.run(SpringKotlinApplication::class.java, *args)
+		}
+	}
 }
