@@ -8,17 +8,8 @@ plugins {
 
 	kotlin("jvm") version "1.3.72"
 	kotlin("plugin.spring") version "1.3.72"
-//	application
 	idea
 }
-
-//application {
-//	mainClass.set("dev48n02m41.springkotlin.SpringKotlinApplication")
-//}
-
-//tasks.getByName<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
-//	mainClassName = "dev48n02m41.springkotlin.SpringKotlinApplication"
-//}
 
 springBoot {
 	mainClassName = "dev48n02m41.springkotlin.SpringKotlinApplication"
