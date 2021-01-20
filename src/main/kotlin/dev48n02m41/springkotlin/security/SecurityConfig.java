@@ -2,14 +2,16 @@ package dev48n02m41.springkotlin.security;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
 import org.springframework.security.oauth2.core.OAuth2TokenValidator;
 import org.springframework.security.oauth2.jwt.*;
+import org.springframework.web.cors.CorsConfiguration;
 
-@EnableWebSecurity
+@Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Value( "${auth0.audience}" )
@@ -25,9 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         an OAuth2 Resource Server, using JWT validation.
         */
         http.authorizeRequests()
-                .mvcMatchers("/v1/api/public").permitAll()
-                .mvcMatchers("/v1/api/private").authenticated()
-                .mvcMatchers("/v1/api/private-scoped").hasAuthority("SCOPE_read:messages")
+                .mvcMatchers("/v1/api").authenticated()
                 .and().cors()
                 .and().oauth2ResourceServer().jwt();
     }

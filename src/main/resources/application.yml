@@ -14,9 +14,13 @@ spring:
     driverClassName: org.postgresql.Driver
 
   auth0:
-    audience: https://social-mood-track-backend.herokuapp.com
+    audience: "https://social-mood-track-backend.herokuapp.com"
   security:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://nullcorp.eu.auth0.com/
+          issuer-uri: "https://nullcorp.eu.auth0.com/"
+
+  autoconfigure:
+    #exclude[0]: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+    #exclude[1]: org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration

@@ -17,24 +17,16 @@ import java.util.*
 
 @RestController
 @RequestMapping(path = ["/v1/api"], produces = [MediaType.APPLICATION_JSON_VALUE])
-@CrossOrigin(origins = ["*"])
 class DiaryEntryResource (private val service: DiaryEntryService) {
 
-    @GetMapping("/public/test", produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun testGET(): ResponseEntity<Any?>? {
-        return ResponseEntity.status(HttpStatus.OK).body(
-            Collections.singletonMap("status", "up")
-        )
-    }
-
-    @GetMapping("/private")
+    @GetMapping()
     fun getTasks(): List<DiaryEntryEntity> = service.getAll()
 
-    @PostMapping("/private")
+    @PostMapping()
     fun addOne(@Validated @RequestBody entry: DiaryEntryEntity): ResponseEntity<DiaryEntryEntity> =
             service.addOne(entry)
 
-    @GetMapping("/private/{id}")
+    @GetMapping("/{id}")
     fun getOneById(@PathVariable(value = "id") idIn: Long): ResponseEntity<DiaryEntryEntity> =
             service.getById(idIn)
 
