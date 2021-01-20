@@ -2,18 +2,27 @@ package dev48n02m41.springkotlin.controllers
 
 import dev48n02m41.springkotlin.entities.DiaryEntryEntity
 import dev48n02m41.springkotlin.services.DiaryEntryService
+import net.minidev.json.JSONObject
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.*
+
 
 @RestController
-@RequestMapping("/v1/api/data")
+@RequestMapping(path = ["/v1/api"], produces = [MediaType.APPLICATION_JSON_VALUE])
 class DiaryEntryResource (private val service: DiaryEntryService) {
 
-    @GetMapping
+    @GetMapping()
     fun getTasks(): List<DiaryEntryEntity> = service.getAll()
 
-    @PostMapping
+    @PostMapping()
     fun addOne(@Validated @RequestBody entry: DiaryEntryEntity): ResponseEntity<DiaryEntryEntity> =
             service.addOne(entry)
 
