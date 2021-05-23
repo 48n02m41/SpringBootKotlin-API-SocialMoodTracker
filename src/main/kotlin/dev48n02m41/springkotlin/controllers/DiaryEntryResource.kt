@@ -22,9 +22,13 @@ class DiaryEntryResource (private val service: DiaryEntryService) {
     @GetMapping()
     fun getTasks(): List<DiaryEntryEntity> = service.getAll()
 
+//    @PostMapping()
+//    fun addOne(@Validated @RequestBody entry: DiaryEntryEntity): ResponseEntity<DiaryEntryEntity> =
+//            service.addOne(entry)
+
     @PostMapping()
-    fun addOne(@Validated @RequestBody entry: DiaryEntryEntity): ResponseEntity<DiaryEntryEntity> =
-            service.addOne(entry)
+    fun addMultiple(@Validated @RequestBody entry: List<DiaryEntryEntity>): List<DiaryEntryEntity> =
+        service.addMultiple(entry)
 
     @GetMapping("/{id}")
     fun getOneById(@PathVariable(value = "id") idIn: Long): ResponseEntity<DiaryEntryEntity> =

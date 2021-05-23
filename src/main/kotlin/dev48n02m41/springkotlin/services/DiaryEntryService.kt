@@ -14,6 +14,8 @@ class DiaryEntryService(private val diaryEntryRepository: DiaryEntryRepository) 
     fun addOne(diaryEntry: DiaryEntryEntity): ResponseEntity<DiaryEntryEntity> =
             ResponseEntity.ok(diaryEntryRepository.save(diaryEntry))
 
+    fun addMultiple(diaryEntries: List<DiaryEntryEntity>): List<DiaryEntryEntity> = diaryEntryRepository.saveAll(diaryEntries)
+
     fun getById(idIn: Long): ResponseEntity<DiaryEntryEntity> =
             diaryEntryRepository.findById(idIn).map { result ->
                 ResponseEntity.ok(result)
